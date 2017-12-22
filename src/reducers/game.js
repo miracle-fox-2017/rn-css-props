@@ -1,12 +1,13 @@
 const initialState = {
   letter_used: [],
   turn_left: [],
-  gamestatus: ''
+  gamestatus: '',
+  words: ''
 }
 export const gameOn = (state = initialState, action) => {
   switch (action.type) {
-    case '':
-      return state
+    case 'GET_WORDS':
+      return {...state, word: action.word}
     default:
       return state
   }
