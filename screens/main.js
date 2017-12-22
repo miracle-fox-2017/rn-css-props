@@ -17,6 +17,8 @@ export default class MainScreen extends Component {
       ],
       playWord: '',
       guess: [],
+      shuffle: '',
+      turnleft: ''
     }
   }
 
@@ -25,22 +27,65 @@ export default class MainScreen extends Component {
   }
 
   componentWillMount() {
-    let randomWord = Math.floor(Math.random()*this.state.words.length)
-    let words = this.state.words
-    this.setState({
-      playWord: words[randomWord]
-    })
+    if(!this.state.playWord) {
+      let randomWord = Math.floor(Math.random()*this.state.words.length)
+      let words = this.state.words
+      let result = words[randomWord]
+      let shuffle = this.shuffle(result.split('')).join(',')
+      let turnleft = result.length
+      this.setState({
+        playWord: result,
+        shuffle: shuffle,
+        turnleft: turnleft
+      })
+    }
+  }
+
+  compareWord(guess) {
+    if(guess == this.state.playWord) {
+      alert('menang')
+    } else {
+      alert('salah')
+    }
+  }
+
+  setGuess(input) {
+    let guess = this.state.guess
+    let turnleft = this.state.turnleft - 1
+    if(this.state.playWord.length === turnleft){
+      this.compareWord(guess)
+    } else {
+      guess.push(input)
+      this.setState({
+        guess: guess,
+        turnleft: turnleft
+      })
+    }
+  }
+
+  shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
   }
 
   render() {
-    let guess = this.state.guess.length > 0 ? is.state.guess.split() : ''
+    let guess = this.state.guess
     let button = 'abcdefghijklmnopqrstuvwxyz'.split('')
+    let used = this.state.shuffle
     return (
       <View style={styles.container}>
-        <Text>{guess}</Text>
+        <Text style={{fontSize: 18}}>{guess}</Text>
+        <View>
+          <Text>Used: {used}</Text>
+          <Text>Turn Left: {this.state.turnleft}</Text>
+          <Text>Game Status: {used}</Text>
+        </View>
         <View style={{flexDirection: 'row', flexWrap:'wrap'}}>
-          {button.map(b => {
-            return <Button style={{margin: 10}} title={b} onPress={() => this.setGuess(b)}/>
+          {button.map((b, i) => {
+            return <Button style={{margin: 20}} title={b} key={i} onPress={() => this.setGuess(b)}/>
           })}
         </View>
       </View>
@@ -55,4 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  button: {
+
+  }
 });
