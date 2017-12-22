@@ -1,17 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-// import HomeScreen from './HomeScreen'
-// import DetailScreen from './DetailScreen'
-// import { createStore } from 'redux'
-// import { Provider } from 'react-redux'
+import HomeScreen from './screens/HomeScreen'
+import GameScreen from './screens/GameScreen'
+import GameOverScreen from './screens/GameOverScreen'
+import store from './store'
+
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+const AppNavigator = StackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+  Game: {
+    screen: GameScreen
+  },
+  GameOver: {
+    screen: GameOverScreen
+  },
+})
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Livecode Phase 3 - Septian @fujianto</Text>
-      </View>
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }
