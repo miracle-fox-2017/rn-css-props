@@ -5,9 +5,9 @@ import Board from './component/Board'
 export default class App extends React.Component {
   render() {
     return (
-      <View >
+     
         <Board />
-      </View>
+     
     );
   }
 
