@@ -1,13 +1,7 @@
 import React from 'react'
 import { View, Text} from 'react-native'
 import { StackNavigator } from 'react-navigation'
-import LoginScreen from './loginScreen'
-
-// const LoginScreen = () => (
-//   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//     <Text>Login Screen</Text>
-//   </View>
-// )
+import LoginScreen from './loginScreen.js'
 
 const MainScreen = () => (
   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
