@@ -5,13 +5,13 @@ import HomeScreen from './screen/HomeScreen'
 import GameScreen from './screen/GameScreen'
 import FinishScreen from './screen/FinishScreen'
 import { Provider } from 'react-redux'
-import store from './store'
+// import store from './store'
 
 const Navigator = StackNavigator({
 	Home: {
    		screen : HomeScreen,
 		navigationOptions: {
-      	 	headerTitle: 'Guess CSS Welcome',
+      	 	headerTitle: 'Welcome',
 		}
 	},
 	Game: {
@@ -30,9 +30,9 @@ const Navigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-    	<Provider store={store}>
+    	// <Provider store={store}>
       	<Navigator />
-      	</Provider>
+      	// </Provider>
     );
   }
 }
