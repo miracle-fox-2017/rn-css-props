@@ -1,12 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Board from './component/Board'
+import { StackNavigator } from 'react-navigation'
+import Home from './component/Home'
 
+const Navigator = StackNavigator({
+  home: { screen: Home },
+  board: {screen: Board}
+})
 export default class App extends React.Component {
+  
   render() {
     return (
      
-        <Board />
+        <Navigator />
      
     );
   }
