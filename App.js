@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 
 import Home from './components/Home';
 import Play from './components/Play';
+import End from './components/End';
 
 const Navigator = StackNavigator({
   Home : {
@@ -12,6 +13,9 @@ const Navigator = StackNavigator({
   },
   Play : {
     screen : Play
+  },
+  End : {
+    screen : End
   }
 });
 
