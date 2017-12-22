@@ -11,11 +11,14 @@ class GameOverScreen extends Component {
   }
 
   render() {
+    const { navigate, state } = this.props.navigation
+    const gameStatus = state.params.win;
+
     return (
       <View>
         <Text>Guess CSS Props</Text>
 
-        <Text>WIN</Text>
+        <Text>You {gameStatus}</Text>
 
         <TouchableOpacity>
           <Text>Play Again</Text>

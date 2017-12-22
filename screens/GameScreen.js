@@ -10,7 +10,9 @@ class GameScreen extends Component {
     this.state = {
       usedWords:[],
       turnLeft: 5,
+      count: 5,
       question: '',
+      gameWin: false,
       randomWords: [
         'background',
         'border',
@@ -38,26 +40,40 @@ class GameScreen extends Component {
   getRandomQuiz() {
     const randomQuiz = this.state.randomWords
 
-    return this.state.randomWords[this.getRandomIntInclusive(0, randomQuiz.length)]
+    return this.state.randomWords[this.getRandomIntInclusive(0, randomQuiz.length - 1)]
   }
 
   setPressed(index) {
     const boxes = this.state.boxes;
+    const { navigate } = this.props.navigation
 
     let newUsed = []
     newUsed.push(this.state.alphabet[index])    
 
-    let newTurn = this.state.turnLeft
-    newTurn = newTurn -= 1
-
-    console.log(`-------NEW TURN STATE--`, newTurn)
-
     this.setState({
       usedWords: this.state.usedWords.concat(newUsed),
-      // turnLeft: newTurn
+      count: this.state.count - 1
     })
 
+
     this.props.setInputWord(this.state.alphabet[index])
+    
+    if (this.state.count < 1) {
+      alert('GAME OVER')
+      navigate('GameOver', { win: this.state.gameWin })
+    } else {
+      console.log(`Quiz-----------: ${this.state.question}`)
+      console.log(`USED WORD-----------: ${this.state.usedWords.join('')}`)
+      
+      const quiz = this.state.question
+      const usedWords = this.state.usedWords.join('')
+
+      if (quiz == usedWords) {
+        this.setState({
+          gameWin: true
+        })
+      }
+    }
   }
 
   render() {
@@ -68,7 +84,7 @@ class GameScreen extends Component {
         <View style={styles.container}>
           <Text style={styles.title}>{this.state.question}</Text>
           <Text>Used: {this.props.usedWords} </Text>
-          <Text>Turns Left: {this.state.turnLeft}</Text>
+          <Text>Turns Left: {this.state.count}</Text>
           <Text>Game status: good guess</Text>
         </View>
 

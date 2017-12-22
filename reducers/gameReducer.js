@@ -21,7 +21,7 @@ export const gameReducer = (state = initialState, action) => {
       console.log(`-----------TURN LEFT ${action.payload.word}`)
 
       const newUsedWords = state.usedWords.concat(newUsed)
-      return { ...state, usedWords: newUsedWords, turnLeft: newTurn }
+      return { ...state, usedWords: newUsedWords, turnLeft: state.turnLeft - 1 }
 
     default:
       return state
