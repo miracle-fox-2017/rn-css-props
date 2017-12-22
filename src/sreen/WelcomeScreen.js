@@ -12,11 +12,10 @@ export default class WelcomeScreen extends Component {
             height: '50%',
             justifyContent: 'center',
             alignItems: 'center',
-            backgoundColor: '#457B9D'
           }}
           onPress={ () => navigate('Main')}
           title="Play Game"
-          color="#841584"
+          color="#457B9D"
           />
       </View>
     )
