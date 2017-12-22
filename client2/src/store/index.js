@@ -4,7 +4,6 @@ import thunk from 'redux-thunk'
 
 const middleware = applyMiddleware (thunk)
 
-//STORE
 const store = createStore(
   listReducer,
   middleware
