@@ -4,6 +4,6 @@ import thunk from 'redux-thunk'
 
 import player from '../reducer'
 
-const store = createStore(player)
+const store = createStore(player, applyMiddleware(thunk))
 
 export default store

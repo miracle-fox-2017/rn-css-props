@@ -1,9 +1,14 @@
-const players = []
+const wordGame = {
+  players: [],
+  words: []
+}
 
-const playerReducer = (state = players, actions) => {
+const playerReducer = (state = wordGame, actions) => {
   switch (actions.type) {
     case 'SET_USERNAME':
-      return players.concat(actions.payload)
+      return state.players.concat(actions.payload)
+    case 'SET_WORDS':
+      return state.words.concat(actions.payload)
     default:
       return state
   }
