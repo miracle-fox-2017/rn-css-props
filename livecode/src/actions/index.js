@@ -26,5 +26,6 @@ export const getWords = () => {
       })
       dispatch(setWords(words))
     })
+    .catch(err => console.error(err))
   }
 }
