@@ -9,7 +9,8 @@ class Play extends Component {
     super();
     this.state = {
       choosedWord : [],
-      typedLetter : '_ _ _ _ _ _'
+      typedLetter : [],
+      turnsLeft : 0
     }
     this.randomWords = [
       'background', 'border', 'clear', 'cursor', 'display',
@@ -24,24 +25,44 @@ class Play extends Component {
   }
   chooseRandom(){
     const selectRandomIndex = Math.floor(Math.random() * this.randomWords.length);
-    const randomWord = this.randomWords[selectRandomIndex];
+    const randomWord = this.randomWords[selectRandomIndex].split('');
     const blankField = [];
     for(let i = 0; i < randomWord.length; i++){
       blankField.push('_');
     }
     this.setState({
       choosedWord : randomWord,
-      typedLetter : blankField.join(' ')
+      typedLetter : blankField,
+      turnsLeft : randomWord.length + 4
     });
   }
   pressButton(letter){
-    const checkSelected = this.state.choosedWord.indexOf(letter.toLowerCase());
-    console.log(this.state.choosedWord);
+    const checkSelected = this.state.choosedWord.map((each,i) => {
+      if(each === letter.toLowerCase() || this.state.typedLetter[i] !== '_'){
+        return each
+      }
+    });
+    const editCheck = checkSelected.map(each => {
+      if(each == undefined){
+        each = '_'
+      }
+      return each
+    });
+    this.setState({
+      typedLetter : editCheck,
+      turnsLeft : this.state.turnsLeft - 1
+    },() => {
+      console.log(this.state.choosedWord);
+      if(this.state.typedLetter.indexOf('_') === -1){
+        this.props.navigation.navigate('End');
+      }
+    });
   }
   render(){
     return(
       <View style={styles.container}>
-        <Text style={styles.fill}>{this.state.typedLetter}</Text>
+        <Text style={styles.fill}>{this.state.typedLetter.join(' ')}</Text>
+        <Text style={{fontSize : 20}}>Turns Left : {this.state.turnsLeft}</Text>
         <View style={styles.keyboard}>
           {this.letter.map((letter,i) => {
             return(
