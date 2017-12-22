@@ -1,0 +1,19 @@
+import React, { Component } from 'react'
+import { StyleSheet, Text, ViewPagerAndroid, View } from "react-native";
+
+export default class MainScreen extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Main</Text>
+      </View>
+    )
+  }
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
