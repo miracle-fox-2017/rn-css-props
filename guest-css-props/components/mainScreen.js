@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { addNewUser } from '../actions'
-import { StyleSheet, TextInput, View} from 'react-native';
+import { StyleSheet, TextInput, View, Text} from 'react-native';
 import { Button } from 'react-native-elements'
 
-class LoginForm extends Component {
+class MainScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,30 +14,32 @@ class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleSubmit () {
-    this.props.addNewUser(this.state.username)
   }
   handleChange(e){
-    this.setState({
-      username: e.target.value
-    })
   }
   render() {
     return (
     <View style={styles.container}>
-      <TextInput
-        style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
-        type="text"
-        name="username"
-        placeholder="Input Username"
-        value={this.state.username}
-        onChange={(e) => this.handleChange(e)}
-      />
+      <View style={{width: 300, height: 300, backgroundColor: 'powderblue'}}>
+        <View style={{width: 300, height: 50, backgroundColor: 'red', borderWidth: 2}}>
+          <Text>Dsini tebakan</Text>
+        </View>
+        <View style={{width: 300, height: 100, backgroundColor: 'green', borderWidth: 2}}>
+          <Text>Dsini Status</Text>
+        </View>
+        <View style={{width: 300, height: 150, backgroundColor: 'blue', borderWidth: 2}}>
+          <Text>Dsini Keyboard</Text>
+        </View>
+      </View>
       <Button
         onPress={() => this.props.navigation.navigate('Main', {username: 'AhmadNizar'})}
-        title="Login"
+        title="Guest"
       />
     </View>
     );
+  }
+  componentWillMount() {
+    this.props.addNewUser(this.props.navigation.state.params.username)
   }
 }
 
@@ -52,7 +54,7 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   null,
   mapDispatchToProps
-)(LoginForm)
+)(MainScreen)
 
 const styles = StyleSheet.create({
   container: {

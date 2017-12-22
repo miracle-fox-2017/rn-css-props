@@ -2,12 +2,13 @@ import React from 'react'
 import { View, Text} from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import LoginScreen from './loginScreen.js'
+import MainScreen from './mainScreen.js'
 
-const MainScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Main Screen</Text>
-  </View>
-)
+// const MainScreen = ({ navigation }) => (
+//   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//     <Text>{navigation.state.params.username}</Text>
+//   </View>
+// )
 
 const RootDrawer = StackNavigator({
   Login: {
