@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchRandomWords } from '../actions/gameAction'
+import { fetchRandomWords, addInputWord } from '../actions/gameAction'
 
 class GameScreen extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      usedWords:[],
+      turnLeft: 5,
+      question: '',
       randomWords: [
         'background',
         'border',
@@ -26,10 +29,35 @@ class GameScreen extends Component {
     }
   }
 
+  getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+  }
+
+  getRandomQuiz() {
+    const randomQuiz = this.state.randomWords
+
+    return this.state.randomWords[this.getRandomIntInclusive(0, randomQuiz.length)]
+  }
+
   setPressed(index) {
     const boxes = this.state.boxes;
 
-    alert(index)
+    let newUsed = []
+    newUsed.push(this.state.alphabet[index])    
+
+    let newTurn = this.state.turnLeft
+    newTurn = newTurn -= 1
+
+    console.log(`-------NEW TURN STATE--`, newTurn)
+
+    this.setState({
+      usedWords: this.state.usedWords.concat(newUsed),
+      // turnLeft: newTurn
+    })
+
+    this.props.setInputWord(this.state.alphabet[index])
   }
 
   render() {
@@ -38,8 +66,9 @@ class GameScreen extends Component {
         <Text style={styles.title}>Guess CSS Props</Text>
 
         <View style={styles.container}>
-          <Text style={styles.title}>Tebakan</Text>
-          <Text>Used: </Text>
+          <Text style={styles.title}>{this.state.question}</Text>
+          <Text>Used: {this.props.usedWords} </Text>
+          <Text>Turns Left: {this.state.turnLeft}</Text>
           <Text>Game status: good guess</Text>
         </View>
 
@@ -59,15 +88,18 @@ class GameScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(`NEXT PROPS------${nextProps.randomWords}`)
-
     this.setState({
-      randomWords : nextProps.randomWords
+      randomWords : nextProps.randomWords,
+      turnLeft: nextProps.turnLeft
     })
   }
 
   componentDidMount() {
     this.props.loadRandomWords(this.state.randomWords)
+
+    this.setState({
+      question: this.getRandomQuiz()
+    })
   }
 }
 
@@ -106,12 +138,15 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     randomWords: state.gameReducer.randomWords,
+    usedWords: state.gameReducer.usedWords,
+    turnLeft: state.gameReducer.turnLeft
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadRandomWords: (randomWords) => dispatch(fetchRandomWords(randomWords))
+    loadRandomWords: (randomWords) => dispatch(fetchRandomWords(randomWords)),
+    setInputWord: (word) => dispatch(addInputWord(word))
   }
 }
 

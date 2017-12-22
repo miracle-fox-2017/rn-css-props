@@ -2,7 +2,9 @@ import _ from 'lodash'
 
 const initialState = {
   randomWords: [],
-  usedWords: []
+  usedWords: [],
+  turnLeft: 5,
+  gameOver: false
 }
 
 export const gameReducer = (state = initialState, action) => {
@@ -11,30 +13,15 @@ export const gameReducer = (state = initialState, action) => {
       const loadRandomWords = state.randomWords.concat(action.payload.randomWords)
       return { ...state, randomWords: loadRandomWords }
     
-    case 'ADD_INPUT_WORDS':
-      /* const loadNewsList = state.newsList.concat(action.payload.newsList)
-      return { ...state, newsList: loadNewsList } */
-      return state;
+    case 'ADD_INPUT_WORDS':      
+      let newUsed = []
+      newUsed.push(action.payload.word)
 
-    /* case 'UPDATE_ARTICLE':
-      const payload = action.payload.article
-      const updatedArticles = [];
+      let newTurn = state.turnLeft--
+      console.log(`-----------TURN LEFT ${action.payload.word}`)
 
-      Array.from(state.newsList).map(article => {
-        if (article.id === payload.id) {
-          article.title = payload.title
-          article.content = payload.content
-        }
-
-        updatedArticles.push(article)
-      })
-
-      return { ...state, newsList: updatedArticles }
-
-    case 'DELETE_ARTICLE': */
-      const filteredArticles = _.filter(state.newsList, (article) => article.id !== id) 
-
-      return { ...state, newsList: filteredArticles }
+      const newUsedWords = state.usedWords.concat(newUsed)
+      return { ...state, usedWords: newUsedWords, turnLeft: newTurn }
 
     default:
       return state

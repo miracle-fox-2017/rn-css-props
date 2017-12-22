@@ -9,3 +9,15 @@ export const fetchRandomWords = (randomWords) => {
     })
   }
 }
+
+
+export const addInputWord = (word) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'ADD_INPUT_WORDS',
+      payload: {
+        word: word,
+      }
+    })
+  }
+}
