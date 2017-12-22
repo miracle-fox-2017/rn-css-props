@@ -1,5 +1,7 @@
 const newGame = () => {
-  type: 'NEW_GAME'
+  return {
+    type: 'NEW_GAME'
+  }
 }
 
 const action = {

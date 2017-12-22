@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './screen/HomeScreen'
 import MainScreen from './screen/MainScreen'
 import FinishScreen from './screen/FinishScreen'
-// import { Provider } from 'react-redux'
-// import store from './store'
+import { Provider } from 'react-redux'
+import store from './store/store'
 
 import {
   StackNavigator,
@@ -22,7 +22,9 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <Apps />
+      <Provider store={store}>
+        <Apps />
+      </Provider>
     )
   }
 }

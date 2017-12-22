@@ -25,28 +25,28 @@ class FinishScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>YOU WIN!!!!!</Text>
-        <Text>YOU LOSE :( </Text>
+        <Text style={{ fontSize: 20 }}>YOU WIN!!!!!</Text>
+        <Text style={{ fontSize: 20 }}>YOU LOSE :( </Text>
         <Button title='Play Again' onPress = { () => navigate('Main') }/>
       </View>
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return ({
-//
-//   })
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return ({
-//
-//   })
-// }
+const mapStateToProps = (state) => {
+  return ({
 
-export default FinishScreen
-// export default connect(mapStateToProps, mapDispatchToProps)(FinishScreen)
+  })
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+
+  })
+}
+
+// export default FinishScreen
+export default connect(mapStateToProps, mapDispatchToProps)(FinishScreen)
 
 const styles = StyleSheet.create({
   container: {

@@ -7,6 +7,7 @@ import { StyleSheet,
        } from 'react-native'
 
 import { StackNavigator } from 'react-navigation'
+import gameAction from '../actions/gameAction'
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -16,6 +17,14 @@ class HomeScreen extends React.Component {
 
   constructor() {
     super()
+  }
+
+  componentDidMount() {
+    this.props.getRandom()
+  }
+
+  componentWillMount() {
+    this.props.getRandom()
   }
 
   render() {
@@ -28,20 +37,20 @@ class HomeScreen extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return ({
-//
-//   })
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return ({
-//
-//   })
-// }
+const mapStateToProps = (state) => {
+  return ({
 
-export default HomeScreen
-// export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+  })
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    getRandom: () => dispatch(gameAction.newGame())
+  })
+}
+
+// export default HomeScreen
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
 
 const styles = StyleSheet.create({
   container: {

@@ -29,7 +29,7 @@ class MainScreen extends React.Component {
       <View style={styles.container}>
         <View style={{ marginTop: 150 }}>
           <View style={styles.containerCenter}>
-            <Text style={{ fontSize: 30 }}>s t _ l e</Text>
+            <Text style={{ fontSize: 30 }}>{ this.props.game }</Text>
           </View>
           <View style={styles.containerCenter}>
             <Text style={{ fontSize: 10 }}>Used: e,d,a,d,g,</Text>
@@ -83,20 +83,20 @@ class MainScreen extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return ({
-//
-//   })
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return ({
-//
-//   })
-// }
+const mapStateToProps = (state) => {
+  return ({
+    game: state.game
+  })
+}
 
-export default MainScreen
-// export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)
+const mapDispatchToProps = (dispatch) => {
+  return ({
+
+  })
+}
+
+// export default MainScreen
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)
 
 const styles = StyleSheet.create({
   container: {
