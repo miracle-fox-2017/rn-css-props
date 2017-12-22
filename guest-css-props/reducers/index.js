@@ -1,7 +1,8 @@
 import { ADD_PLAYER } from '../actions'
 
 const initialState = {
-  username: ''
+  username: '',
+  libGuest: 'font'
 }
 
 export function guestCssGame( state = initialState, action ) {

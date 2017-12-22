@@ -3,6 +3,7 @@ import { View, Text} from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import LoginScreen from './loginScreen.js'
 import MainScreen from './mainScreen.js'
+import WinPage from './winPage.js'
 
 // const MainScreen = ({ navigation }) => (
 //   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -21,6 +22,13 @@ const RootDrawer = StackNavigator({
     screen: MainScreen,
     navigationOptions: {
      headerTitle: `Let's Play`
+   }
+  }
+  ,
+  WinPage: {
+    screen: WinPage,
+    navigationOptions: {
+     headerTitle: `You Win`
    }
   }
 })
