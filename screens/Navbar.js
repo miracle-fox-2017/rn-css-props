@@ -4,20 +4,27 @@ import { StackNavigator } from 'react-navigation'
 
 import MainMenu from './MainMenu'
 import BoardGame from './BoardGame'
+import Menang from './Menang'
 
 const RootNavigator = StackNavigator({
-  Home : {
+  Main : {
     screen : MainMenu,
     navigationOptions:{
-      headerTitle:'Home'
+      headerTitle:'Main'
     }
   }
   ,
-  Board :{
+  Board : {
     screen: BoardGame,
     navigationOptions:{
-    headerTitle: 'Home'
+    headerTitle: 'Board'
   }
+  },
+  Menang:{
+    screen: Menang,
+    navigationOptions:{
+      headerTitle: 'Menang'
+    }
   }
 })
 

@@ -4,10 +4,13 @@ import Board from './BoardGame'
 import {StackNavigator} from 'react-navigation'
 // import{Button} from 'react-native-elements'
 
-class MainMenu extends React.Component{
+export default class MainMenu extends React.Component{
 
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
+    this.state ={
+
+    }
 
   }
   render(){
@@ -15,7 +18,7 @@ class MainMenu extends React.Component{
       <View style={styles.container}>
       <Button
       title='New Game' 
-      onPress={() => this.props.navigation.navigate('Board')}/>
+      onPress={() => this.props.navigation('Menang')}/>
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
@@ -34,4 +37,3 @@ class MainMenu extends React.Component{
     }
   })
 
-export default MainMenu
