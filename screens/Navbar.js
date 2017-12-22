@@ -28,4 +28,16 @@ const RootNavigator = StackNavigator({
   }
 })
 
+// export default class Navbar extends React.Component{
+//   render(){
+//     return(
+//       <View>
+//         <BoardGame/>
+//         <Text>
+//           ini apa ya
+//         </Text>
+//       </View>
+//     )
+//   }
+// }
 export default RootNavigator

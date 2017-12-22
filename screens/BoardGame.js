@@ -9,7 +9,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const {params} = this.props.navigation
+    // const {params} = this.props.navigation
     return (
       <View style={styles.container}>
         <Text>S T _ L E</Text>
