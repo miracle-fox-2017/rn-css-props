@@ -51,7 +51,7 @@ class GameScreen extends Component<{}> {
             )
             else {
               return (
-                <TouchableOpacity key={i}><Text style ={styles.usedCell}>{letter}</Text></TouchableOpacity>
+                <Text key={i} style ={styles.usedCell}>{letter}</Text>
               )
             }
           })}
@@ -61,23 +61,27 @@ class GameScreen extends Component<{}> {
   }
   
   check (letter) {
+    let correctLetterNew = this.state.correctLetter;
+    let usedLetterNew = this.state.usedLetter
     if (this.state.word.indexOf(letter) > -1) {
-      console.log("benar")
-      let correctLetterNew = this.state.correctLetter
       correctLetterNew += letter
       this.setState({
         correctLetter: correctLetterNew
       })
     }
     else {
-      console.log("salah")
+      console.log("salah");
     }
-    let usedLetterNew = this.state.usedLetter
+    
     usedLetterNew.push(letter)
     this.setState({
       usedLetter: usedLetterNew
     })
-    console.log(this.state.correctLetter)
+    
+    if (correctLetterNew.length === this.state.word.length) {
+      const { navigate  } = this.props.navigation
+      navigate('GameEnd')
+    }
   }
 }
 
