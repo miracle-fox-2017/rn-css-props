@@ -14,7 +14,7 @@ export default class WelcomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title='New Game' onPress={() => this.props.navigation.navigate('main')}/>
+        <Button title='New Game' onPress={() => this.props.navigation.navigate('main', {})}/>
       </View>
     );
   }
