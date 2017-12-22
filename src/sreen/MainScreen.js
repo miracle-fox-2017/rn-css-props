@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, ViewPagerAndroid, View } from "react-native";
+import { StyleSheet, Text, ViewPagerAndroid, View, Button } from "react-native";
 import {connect} from 'react-redux'
 import {getWord} from '../actions'
 
@@ -13,8 +13,18 @@ export class MainScreen extends Component {
     this.props.getWord()
   }
   render() {
+    let key = 'qwertyuiopasdfghjklzxcvbnm'.split('')
+    Array.prototype.shuffled = function() {
+      return this.map(function(n){ return [Math.random(), n] })
+                 .sort().map(function(n){ return n[1] });
+    }
+    let randomKey = ''
+    if(this.props.word) {
+      randomKey = this.props.word.split('').shuffled()
+    }
     return (
       <View style={styles.container}>
+       <View style={styles.Row}>
         <View style={styles.Row1}>
           <Text style={{
             fontWeight: 'bold',
@@ -25,97 +35,17 @@ export class MainScreen extends Component {
             color: '#E63946'
           }}>
           {this.props.word}</Text>
-          <View style={styles.Row}>
-            <Text>Userd: </Text>
-            <Text>Turn left: </Text>
-            <Text>Game status: </Text>
-          </View>
         </View>
+        <View style={styles.Row}>
+          <Text>Userd: {randomKey.join(',')}</Text>
+          <Text>Turn left: </Text>
+          <Text>Game status: </Text>
+        </View>
+      </View>
         <View style={styles.Row2}>
-          <View style={styles.Box}>
-              <Text>a</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>b</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>c</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>d</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>e</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>f</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>g</Text>
-          </View>
-        </View>
-        <View style={styles.Row2}>
-          <View style={styles.Box}>
-              <Text>h</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>i</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>j</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>k</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>l</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>m</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>n</Text>
-          </View>
-        </View>
-        <View style={styles.Row2}>
-          <View style={styles.Box}>
-              <Text>o</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>p</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>q</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>r</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>s</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>t</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>u</Text>
-          </View>
-        </View>
-        <View style={styles.Row3}>
-          <View style={styles.Box}>
-              <Text>v</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>w</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>x</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>y</Text>
-          </View>
-          <View style={styles.Box}>
-              <Text>z</Text>
-          </View>
+          {key.map((k, idx) => {
+            return <View key={idx} style={{padding:10}}><Button disabled={false} styleDisabled={{color:'black'}} color="#E63946" style={{padding:50, width: 50, height: 50}} title={k}></Button></View>
+          })}
         </View>
       </View>
     )
@@ -138,36 +68,27 @@ export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F1FAEE',
     alignItems: 'center',
     justifyContent: 'center',
   },
   Row1 : {
     marginTop: 23,
-    flex:1,
     flexDirection:'row',
-    height: '50%'
+    
   },
   Row : {
-    backgroundColor: '#F3FFBD'
+    height:'50%'
   },
   Row2 : {
-    flex:1,
     flexDirection:'row',
-    height: 10,
-    margin: 10
-  },
-  Row3 : {
-    flex:1,
-    flexDirection:'row',
-    height: 10,
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   Box : {
-    flex:1,
-    height: 20,
-    width: 20,
-    backgroundColor:'#B2DBBF',
-    alignItems:'center',
-    justifyContent:'center',
-    margin: 10
+    fontSize: 20,
+    padding:50,
+    backgroundColor: '#E63946'
   }
 });
