@@ -8,7 +8,7 @@ import {
 
 export default class WelcomeScreen extends Component {
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'Guess CSS Props'
   }
 
   render() {
