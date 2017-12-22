@@ -3,7 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import HomeScreen from './screen/HomeScreen'
 import GameScreen from './screen/GameScreen'
+import FinishScreen from './screen/FinishScreen'
 import { Provider } from 'react-redux'
+import store from './store'
 
 const Navigator = StackNavigator({
 	Home: {
@@ -16,6 +18,12 @@ const Navigator = StackNavigator({
 		screen: GameScreen,
 		navigationOptions: {
 			headerTitle: 'Game'
+		}
+	},
+	Finish: {
+		screen: FinishScreen,
+		navigationOptions: {
+			headerTitle: 'Finish Screen'
 		}
 	}
 })

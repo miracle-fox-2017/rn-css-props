@@ -8,31 +8,24 @@ import { StyleSheet,
 import { StackNavigator } from 'react-navigation';
 
 export default class GameScreen extends  React.Component {
-  constructor(props){
-    super()
-    this.state= {
-      tebakanKata: 'style',
-      tebakan: ['','','','','']
-      gameState: [],
-      keyboard: ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
-      disable: false
-    }
-  }   
 	render() {
 		const { navigate,state } = this.props.navigation
 		return (
-	       <View style={styles.container}>
-	       	<Text> Welcome Game </Text>       	
-	      </View>			
+         <View style={styles.container}>
+          <Text> You Win </Text>
+           <TouchableOpacity onPress={() => navigate('Game')}> 
+           <Text style={styles.box} > New Game </Text>
+           </TouchableOpacity>          
+        </View> 		
 		)
 	}
 }
 const styles = StyleSheet.create({
-  container: {
+  container: {                                                                                                                                                  
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center',                                           
   },
   h1: {
   	fontSize: 20,
