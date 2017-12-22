@@ -23,19 +23,25 @@ class GameScreen extends Component<{}> {
   constructor(props) {
     super()
     let currentWord = props.words[Math.floor(Math.random() * props.words.length)]
+    let correctLetterInit = ''
+    
+    for (let i = 0; i < currentWord.length; i++) {
+      correctLetterInit += '_'
+    }
+    
     this.state = {
       word: currentWord,
       letters: ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
-      guessedWord: '',
+      correctLetter: correctLetterInit,
       usedLetter: []
     }
   }
-  
   
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.question}>{this.state.word}</Text>
+        <Text style={styles.question}>{this.state.correctLetter}</Text>
         <View style={styles.board}>
           {this.state.letters.map((letter, i) => {
             if (this.state.usedLetter.indexOf(letter) === -1)
@@ -56,10 +62,21 @@ class GameScreen extends Component<{}> {
   check (letter) {
     if (this.state.word.indexOf(letter) > -1) {
       console.log("benar")
+      let correctLetterNew = this.state.correctLetter
+      correctLetterNew += letter
+      this.setState({
+        correctLetter: correctLetterNew
+      })
     }
     else {
       console.log("salah")
     }
+    let usedLetterNew = this.state.usedLetter
+    usedLetterNew.push(letter)
+    this.setState({
+      usedLetter: usedLetterNew
+    })
+    console.log(this.state.correctLetter)
   }
 }
 
@@ -68,24 +85,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
   board: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
-    // alignItems: 'center'
   },
   cell: {
     width: (Dimensions.get('window').width/8),
@@ -107,18 +111,6 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
-
-// <View style= {styles.board}>
-//     <TouchableOpacity onPress={() => this.changeColumn(0) }><Text style ={styles.cell}>{this.state.cells[0]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(1) }><Text style ={styles.cell}>{this.state.cells[1]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(2) }><Text style ={styles.cell}>{this.state.cells[2]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(3) }><Text style ={styles.cell}>{this.state.cells[3]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(4) }><Text style ={styles.cell}>{this.state.cells[4]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(5) }><Text style ={styles.cell}>{this.state.cells[5]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(6) }><Text style ={styles.cell}>{this.state.cells[6]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(7) }><Text style ={styles.cell}>{this.state.cells[7]}</Text></TouchableOpacity>
-//     <TouchableOpacity onPress={() => this.changeColumn(8) }><Text style ={styles.cell}>{this.state.cells[8]}</Text></TouchableOpacity>
-// </View>
 
 const mapStateToProps = state => {
   return {
