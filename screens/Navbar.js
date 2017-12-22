@@ -1,24 +1,24 @@
 import React from 'react'
 import {View, Text, Button} from 'react-native'
-import {StackNavigator,NavigationAction} from 'react-navigation'
+import { StackNavigator } from 'react-navigation'
 
-import MainMenu from './mainMenu'
-import BoardGame from './board'
+import MainMenu from './MainMenu'
+import BoardGame from './BoardGame'
 
 const RootNavigator = StackNavigator({
-  Main : {
+  Home : {
     screen : MainMenu,
     navigationOptions:{
-      headerTitle:'Main'
+      headerTitle:'Home'
     }
   }
-  // ,
-  // Board :{
-  //   screen: BoardGame,
-  //   navigationOptions:{
-  //     headerTitle:'Board'
-  //   }
-  // }
+  ,
+  Board :{
+    screen: BoardGame,
+    navigationOptions:{
+    headerTitle: 'Home'
+  }
+  }
 })
 
 export default RootNavigator

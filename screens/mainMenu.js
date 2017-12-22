@@ -1,18 +1,21 @@
-import React, { Component } from 'react'
-import {StyleSheet,View,Text,Button} from 'react-native'
-import Board from './board'
+import React from 'react'
+import {StyleSheet,View,Text, Button} from 'react-native'
+import Board from './BoardGame'
+import {StackNavigator} from 'react-navigation'
+// import{Button} from 'react-native-elements'
 
 class MainMenu extends React.Component{
 
   constructor(props){
     super(props)
+
   }
   render(){
     return(
       <View style={styles.container}>
-      {/* <Button
-      title='New Game'
-      onPress={() => this.props.navigation.navigate('Board')}/> */}
+      <Button
+      title='New Game' 
+      onPress={() => this.props.navigation.navigate('Board')}/>
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
