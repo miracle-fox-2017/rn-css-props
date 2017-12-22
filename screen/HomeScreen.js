@@ -8,7 +8,7 @@ import { StyleSheet,
 
 import { StackNavigator } from 'react-navigation'
 
-class WelcomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     headerTitle: 'Guess CSS Props',
     headerStyle: { marginTop: 24 },
@@ -22,7 +22,7 @@ class WelcomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Button title='New Game' onPress = { () => console.log('new game!!') }/>
+        <Button title='New Game' onPress = { () => navigate('Main') }/>
       </View>
     )
   }
@@ -40,8 +40,8 @@ class WelcomeScreen extends React.Component {
 //   })
 // }
 
-export default WelcomeScreen
-// export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen)
+export default HomeScreen
+// export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
 
 const styles = StyleSheet.create({
   container: {
