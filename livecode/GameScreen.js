@@ -26,13 +26,14 @@ class GameScreen extends Component<{}> {
     let correctLetterInit = ''
     
     for (let i = 0; i < currentWord.length; i++) {
-      correctLetterInit += '_'
+      correctLetterInit += '_ '
     }
     
     this.state = {
       word: currentWord,
       letters: ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
-      correctLetter: correctLetterInit,
+      correctLetter: '',
+      emptywords : correctLetterInit,
       usedLetter: []
     }
   }
@@ -40,8 +41,8 @@ class GameScreen extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>{this.state.word}</Text>
         <Text style={styles.question}>{this.state.correctLetter}</Text>
+        <Text style={styles.question}>{this.state.emptywords}</Text>
         <View style={styles.board}>
           {this.state.letters.map((letter, i) => {
             if (this.state.usedLetter.indexOf(letter) === -1)
