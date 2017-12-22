@@ -55,12 +55,13 @@ class GameScreen extends Component {
       count: this.state.count - 1
     })
 
+    let newBoxColor = this.state.boxes;
+    newBoxColor[index] = true
 
     this.props.setInputWord(this.state.alphabet[index])
     
-    if (this.state.count < 1) {
-      alert('GAME OVER')
-      navigate('GameOver', { win: this.state.gameWin })
+    if (this.state.count <= 0) {
+      navigate('GameOver', { win: this.state.gameWin ? 'WIN' : 'LOSE' })
     } else {
       console.log(`Quiz-----------: ${this.state.question}`)
       console.log(`USED WORD-----------: ${this.state.usedWords.join('')}`)

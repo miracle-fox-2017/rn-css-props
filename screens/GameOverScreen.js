@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
 class GameOverScreen extends Component {
   constructor(props) {
@@ -13,12 +13,12 @@ class GameOverScreen extends Component {
   render() {
     const { navigate, state } = this.props.navigation
     const gameStatus = state.params.win;
-
+    console.log(`~~~gameStatus: `, gameStatus)
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Guess CSS Props</Text>
 
-        <Text>You {gameStatus}</Text>
+        <Text style={styles.title}>You {gameStatus}</Text>
 
         <TouchableOpacity>
           <Text>Play Again</Text>
@@ -27,5 +27,18 @@ class GameOverScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  title: {
+    fontSize: 20,
+  },
+});
 
 export default GameOverScreen
