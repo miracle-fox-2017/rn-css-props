@@ -9,6 +9,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import {connect} from 'react-redux'
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -16,13 +18,13 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class GameScreen extends Component<{}> {
+class GameScreen extends Component<{}> {
   
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
-      cells: [1,2,3,4,5,6,7,8,9],
-      currentPlayer: 'x'
+      words: props.heroes,
+      // currentPlayer: 'x'
     }
   }
   
@@ -31,7 +33,7 @@ export default class GameScreen extends Component<{}> {
     debugger
     return (
       <View style={styles.container}>
-        <Text>Hari Antara</Text>
+        <Text>{this.state.words[0]}</Text>
         <View style= {styles.board}>
             <TouchableOpacity onPress={() => this.changeColumn(0) }><Text style ={styles.cell}>{this.state.cells[0]}</Text></TouchableOpacity>
             <TouchableOpacity onPress={() => this.changeColumn(1) }><Text style ={styles.cell}>{this.state.cells[1]}</Text></TouchableOpacity>
@@ -47,16 +49,16 @@ export default class GameScreen extends Component<{}> {
     )
   }
   
-  changeColumn (e) {
-    let temp = this.state.cells
-    temp[e] = this.state.currentPlayer
-    let nextPlayer = ''
-    this.state.currentPlayer === 'o' ? nextPlayer = 'x' : nextPlayer = 'o'
-    this.setState({
-      cells: temp,
-      currentPlayer: nextPlayer
-    })
-  }
+  // changeColumn (e) {
+  //   let temp = this.state.cells
+  //   temp[e] = this.state.currentPlayer
+  //   let nextPlayer = ''
+  //   this.state.currentPlayer === 'o' ? nextPlayer = 'x' : nextPlayer = 'o'
+  //   this.setState({
+  //     cells: temp,
+  //     currentPlayer: nextPlayer
+  //   })
+  // }
 }
 
 const styles = StyleSheet.create({
@@ -95,3 +97,16 @@ const styles = StyleSheet.create({
     // marginBottom: (Dimensions.get('window').height/20)
   }
 });
+
+
+
+const mapStateToProps = state => {
+  return {
+    words: state.words
+  }
+}
+
+const mapDispatchToProps = null
+
+const connectedGameScreen = connect(mapStateToProps,mapDispatchToProps)(GameScreen)
+export default connectedGameScreen

@@ -5,10 +5,13 @@ import {
 import {
   StackNavigator
 } from 'react-navigation'
+import { Provider } from 'react-redux'
 
 import FirstScreen from './FirstScreen'
 import GameScreen from './GameScreen'
 import GameOver from './GameOver'
+
+import store from './store'
 
 const BasicApp = StackNavigator({
   SplashScreen: {screen: FirstScreen},
@@ -23,7 +26,9 @@ class TitleScreen extends React.Component {
   
   render(){
     return(
-      <BasicApp/>
+      <Provider store = {store}>
+        <BasicApp/>
+      </Provider>
     )
   }
 }
