@@ -18,8 +18,23 @@ class Hasil extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>{this.props.pesan}</Text>
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#2200cb'
+      }}>
+        <View style={{width: 200, height: 100}}>
+          {this.props.pesan === "SAYANG SEKALI ANDA KALAH" ? (
+            <Text style={{textAlign: 'center', fontSize: 70, color: 'white'}}>T_T</Text>
+          ) : (
+            <Text style={{textAlign: 'center', fontSize: 70, color: 'white'}}>^-^</Text>
+          )}
+        </View>
+        <View style={{width: 300, height: 70}}>
+          <Text style={{textAlign: 'center', fontSize: 26, color: 'white'}}>{this.props.pesan}</Text>
+        </View>
       </View>
     )
   }
