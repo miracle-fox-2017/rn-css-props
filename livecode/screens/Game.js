@@ -26,9 +26,10 @@ class Game extends React.Component {
     }
   }
   getAlphabet(word) {
-    this.setState({
-      letter_used: this.state.letter_used.push(word)
-    })
+    console.log(word)
+    // this.setState({
+    //   letter_used: this.state.letter_used.push(word)
+    // })
   }
 
   getKataTebakan(word) {
@@ -53,8 +54,8 @@ class Game extends React.Component {
           onChangeText={(text) => this.getKataTebakan(text)} />
 
         <Text>Letter Used :   </Text>
-        <View>
-          <Button title="A" onPress={() => this.getAlphabet("A")} />
+        <View style={styles.board}>
+          <Button style={styles.button} title="A" onPress={() => this.getAlphabet("A")} />
           <Button title="B" onPress={() => this.getAlphabet("B")} />
           <Button title="C" onPress={() => this.getAlphabet("C")} />
           <Button title="D" onPress={() => this.getAlphabet("D")} />
@@ -62,7 +63,7 @@ class Game extends React.Component {
           <Button title="F" onPress={() => this.getAlphabet("F")} />
           <Button title="G" onPress={() => this.getAlphabet("G")} />
         </View>
-        <View>
+        <View style={styles.board}>
           <Button title="H" onPress={() => this.getAlphabet("H")} />
           <Button title="I" onPress={() => this.getAlphabet("I")} />
           <Button title="J" onPress={() => this.getAlphabet("J")} />
@@ -71,7 +72,7 @@ class Game extends React.Component {
           <Button title="M" onPress={() => this.getAlphabet("M")} />
           <Button title="N" onPress={() => this.getAlphabet("N")} />
         </View>
-        <View>
+        <View style={styles.board}>
           <Button title="O" onPress={() => this.getAlphabet("O")} />
           <Button title="P" onPress={() => this.getAlphabet("P")} />
           <Button title="Q" onPress={() => this.getAlphabet("Q")} />
@@ -80,7 +81,7 @@ class Game extends React.Component {
           <Button title="T" onPress={() => this.getAlphabet("T")} />
           <Button title="U" onPress={() => this.getAlphabet("U")} />
         </View>
-        <View>
+        <View style={styles.board}>
           <Button title="V" onPress={() => this.getAlphabet("V")} />
           <Button title="W" onPress={() => this.getAlphabet("W")} />
           <Button title="X" onPress={() => this.getAlphabet("X")} />
@@ -98,6 +99,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  board: {
+    flexDirection: 'row'
+  },
+  button: {
+    flex: 2
   },
   textInput: {
     height: 40,
